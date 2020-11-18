@@ -1,0 +1,45 @@
+<template>
+  <div>
+    <h3>{{this.showNum}}</h3>
+    <button @click="btnHandler1">-1</button>
+    <button @click="btnHandler2">-N</button>
+    <button @click="subAsync">-1 Async</button>
+    <button @click="subNAsync(5)">-N Async</button>
+  </div>
+</template>
+<script>
+  import {mapState,mapMutations,mapActions,mapGetters} from 'vuex'
+  export default {
+    computed:{
+      ...mapState(['count']),
+      ...mapGetters(['showNum']),
+    },
+    data(){
+      return{
+
+      };
+    },
+    methods:{
+      ...mapMutations(['sub','subN']),
+      ...mapActions(['subAsync','subNAsync']),
+      btnHandler1(){
+        this.sub();
+      },
+      btnHandler2(){
+        this.subN(3)
+
+      },
+      //异步的让count自增减一
+      btnHandler3(){
+        this.subAsync()
+      },
+      btnHandler4(){
+        this.subNAsync(5)
+
+      },
+    }
+  }
+
+
+
+</script>
